@@ -1,0 +1,26 @@
+{
+  "name": "ai-agent-workspace",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@12.16.1",
+  "scripts": {
+    "dev": "pnpm --filter @ai-agent/web dev",
+    "build": "pnpm --filter @ai-agent/web build",
+    "lint": "pnpm --filter @ai-agent/web lint",
+    "typecheck": "pnpm --filter @ai-agent/web typecheck && pnpm --filter @ai-agent/worker typecheck && pnpm --filter @ai-agent/shared typecheck",
+    "test": "pnpm --filter @ai-agent/worker test && pnpm --filter @ai-agent/web test && pnpm db:test",
+    "db:start": "supabase start",
+    "db:stop": "supabase stop",
+    "db:status": "supabase status",
+    "db:reset": "supabase db reset",
+    "db:test": "supabase test db",
+    "db:types": "supabase gen types typescript > apps/web/src/lib/supabase/database.types.ts",
+    "seed:demo": "pnpm --filter @ai-agent/worker exec tsx src/demo/seed-demo-data.ts",
+    "test:e2e": "playwright test",
+    "test:integration": "pnpm --filter @ai-agent/worker test:integration"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.0",
+    "supabase": "3.0.0"
+  }
+}
